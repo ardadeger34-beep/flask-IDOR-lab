@@ -7,14 +7,15 @@ A project demonstrating how an IDOR (Insecure Direct Object Reference) vulnerabi
 The `/profile/<user_id>` route returned user data based on the ID in the URL without performing any authorization checks. In this situation, a logged-in user could access the information of users other than their own by entering `/profile/2` or `/profile/3` instead of `/profile/1`.
 
 ## Evidence
-![alt text](image-1.png)
+![alt text](image.png)
 
-![alt text](image-2.png)
+
+![alt text](image-1.png)
 
 ## Fix
 An `if` block was added to the `profile()` function to check whether the requested `user_id` matches the logged-in user's ID (`current_user_id`). If they do not match, access is denied using `abort(403)`.
 
-![alt text](image.png)
+![alt text](image-2.png)
 
 
 ## Why this vulnerability is important?
